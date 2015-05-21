@@ -1,0 +1,43 @@
+plugins {
+    id "com.github.hierynomus.license" version "0.11.0"
+    id "java"
+    id "maven-publish"
+    id "wrapper"
+}
+
+group "com.tealcube.java.games"
+version "0.0.1-SNAPSHOT"
+
+sourceCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+}
+
+license {
+    header file('HEADER')
+    ignoreFailures false
+    strictCheck true
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+    }
+}
+
+publishing {
+    publications {
+        java(MavenPublication) {
+            artifactId = "commons"
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "http://tealcube.com/nexus/content/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
+            name "TealCube"
+            credentials {
+                username System.getenv("nexusUsername") ?: nexusUsername
+                password System.getenv("nexusPassword") ?: nexusPassword
+            }
+        }
+    }
+}
