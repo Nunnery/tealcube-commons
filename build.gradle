@@ -43,6 +43,9 @@ publishing {
         java(MavenPublication) {
             artifactId = "commons"
             from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
     repositories {
