@@ -4,3 +4,4 @@ jdk:
 branches:
   only:
     - master
+script: gradle clean publish
