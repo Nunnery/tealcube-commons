@@ -32,11 +32,11 @@ publishing {
     }
     repositories {
         maven {
-            url "http://tealcube.com/nexus/content/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
+            url "http://maven.tealcube.com/artifactory/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
             name "TealCube"
             credentials {
-                username System.getenv("nexusUsername") ?: nexusUsername
-                password System.getenv("nexusPassword") ?: nexusPassword
+                username System.getenv("ossrhUsername") ?: ossrhUsername
+                password System.getenv("ossrhPassword") ?: ossrhPassword
             }
         }
     }
